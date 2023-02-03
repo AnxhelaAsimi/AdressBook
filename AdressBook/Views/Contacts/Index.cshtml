@@ -1,0 +1,40 @@
+﻿@model List<AdressBook.Models.Domain.Contact>
+@{
+
+}
+
+<h1>My Contacts</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Surname</th>
+			<th>Company</th>
+			<th>Email</th>
+			<th>Phone Number 1</th>
+			<th>Phone Number 2</th>
+			<th>Office Number</th>
+			<th>Address </th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+
+		@foreach(var c in Model)
+		{
+			<tr>
+			<td>@c.Name</td>
+			<td>@c.Surname</td>
+			<td>@c.Company</td>
+			<td>@c.Email</td>
+			<td>@c.PhoneNumber1</td>
+			<td>@c.PhoneNumber2</td>
+			<td>@c.OfficeNumber</td>
+			<td>@c.Address</td>
+			<td><a href="Contacts/View/@c.Id"></a></td>
+			</tr>
+
+		}
+	</tbody>
+</table>

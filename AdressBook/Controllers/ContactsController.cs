@@ -2,6 +2,7 @@
 using AdressBook.Models;
 using AdressBook.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AdressBook.Controllers
 {
@@ -12,6 +13,13 @@ namespace AdressBook.Controllers
         public ContactsController(ABDbContext dbcontext)
         {
             this.Dbcontext = dbcontext;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var contacts = await Dbcontext.Contacts.ToListAsync();
+            return View(contacts);
         }
 
         [HttpGet]
@@ -26,7 +34,7 @@ namespace AdressBook.Controllers
             var contact = new Contact(newContact);
             await Dbcontext.Contacts.AddAsync(contact);
             await Dbcontext.SaveChangesAsync();
-            return RedirectToAction("Add");
+            return RedirectToAction("Index");
         }
 
     }
